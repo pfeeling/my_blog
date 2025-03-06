@@ -1,8 +1,9 @@
 project:
   type: website
+  output-dir: docs
 
 website:
-  title: "feeling-blog"
+  title: "LS_seongpil"
   navbar:
     right:
       - about.qmd
@@ -13,9 +14,13 @@ website:
 format:
   html:
     theme:
-      - cosmo
+      - litera
       - brand
     css: styles.css
+
+execute:
+  warning: false
+  freeze: auto
 
 
 
