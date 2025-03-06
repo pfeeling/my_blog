@@ -11,7 +11,7 @@
     "href": "index.html",
     "title": "feeling-blog",
     "section": "",
-    "text": "Post With Code\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nMar 6, 2025\n\n\nsong seong pil\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nMar 3, 2025\n\n\nTristan O’Malley\n\n\n\n\n\n\nNo matching items"
+    "text": "팔머펭귄 종별 특징 분석 _ 5조(김예원, 박한슬, 송성필)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nMar 6, 2025\n\n\nsong seong pil\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nMar 3, 2025\n\n\nTristan O’Malley\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",
@@ -26,5 +26,75 @@
     "title": "Post With Code",
     "section": "",
     "text": "what’s up!!!"
+  },
+  {
+    "objectID": "posts/penguin/penguin.html",
+    "href": "posts/penguin/penguin.html",
+    "title": "팔머펭귄 종별 특징 분석 _ 5조(김예원, 박한슬, 송성필)",
+    "section": "",
+    "text": "펭귄 3종(Adelie, Gentoo, Chinstrap)별 특징을 알아보자!"
+  },
+  {
+    "objectID": "posts/penguin/penguin.html#분석-개요-및-목표",
+    "href": "posts/penguin/penguin.html#분석-개요-및-목표",
+    "title": "팔머펭귄 종별 특징 분석 _ 5조(김예원, 박한슬, 송성필)",
+    "section": "",
+    "text": "펭귄 3종(Adelie, Gentoo, Chinstrap)별 특징을 알아보자!"
+  },
+  {
+    "objectID": "posts/penguin/penguin.html#데이터소개",
+    "href": "posts/penguin/penguin.html#데이터소개",
+    "title": "팔머펭귄 종별 특징 분석 _ 5조(김예원, 박한슬, 송성필)",
+    "section": "2. 데이터소개",
+    "text": "2. 데이터소개\n\n주요 변수:\n\n신체 특성: 부리 길이(bill_length_mm), 부리 깊이(bill_depth_mm), 날개 길이(flip_len_mm), 체중(body_mass_g)\n서식지: 섬(island), 종(species), 성별(sex)\n연도: 데이터 수집 연도(year)"
+  },
+  {
+    "objectID": "posts/penguin/penguin.html#분석-내용",
+    "href": "posts/penguin/penguin.html#분석-내용",
+    "title": "팔머펭귄 종별 특징 분석 _ 5조(김예원, 박한슬, 송성필)",
+    "section": "3. 분석 내용",
+    "text": "3. 분석 내용\n\n3.1 종별 서식지\n\n\n\n\nAdelie\nGentoo\nChinstrap\n\n\n\n\nTorgers\nO\nX\nX\n\n\nBiscoe\nO\nO\nX\n\n\nDream\nO\nX\nO\n\n\n\n\n\n\nspecies\nisland\n\n\n\n\nAdelie\nTorgersen’, ‘Biscoe’, ’Dream\n\n\nGentoo\n’Biscoe\n\n\nChinstrap\nDream\n\n\n\n\n\n상기 index는 다음을 나타낸다.\nGentoo펭귄은 Biscoe섬만 서식한다.\nChinstrap펭귄은 Dream섬에서만 서식한다.\nAdelie펭귄은 Torgers, Biscoe, Dream 전지역에서 서식한다."
+  },
+  {
+    "objectID": "posts/penguin/penguin.html#종별-신체-특성",
+    "href": "posts/penguin/penguin.html#종별-신체-특성",
+    "title": "팔머펭귄 종별 특징 분석 _ 5조(김예원, 박한슬, 송성필)",
+    "section": "3.2 종별 신체 특성",
+    "text": "3.2 종별 신체 특성\n\n3.2.1 종별 부리 길이(최소/최대/중앙값/평균)\n\n\n\n\n\n\n\n\n\n\nspecies\n(‘bill_length_mm’, ‘min’)\n(‘bill_length_mm’, ‘max’)\n(‘bill_length_mm’, ‘median’)\n(‘bill_length_mm’, ‘mean’)\n\n\n\n\nAdelie\n32.1\n46\n38.8\n38.7914\n\n\nChinstrap\n40.9\n58\n49.55\n48.8338\n\n\nGentoo\n40.9\n59.6\n47.3\n47.5049\n\n\n\n\nAdelie 펭귄의 부리 길이가 가장 짧으며, 평균적으로 약 38.79mm이다.\nChinstrap 펭귄이 가장 긴 부리를 가지며, 평균적으로 48.83mm로 측정됨.\nGentoo 펭귄의 부리 길이는 Chinstrap보다는 짧지만, Adelie보다는 길다.\n\n\n\n3.2.2 종별 부리 넓이(최소/최대/중앙값/평균)\n\n\n\n\n\n\n\n\n\n\nspecies\n(‘bill_depth_mm’, ‘min’)\n(‘bill_depth_mm’, ‘max’)\n(‘bill_depth_mm’, ‘median’)\n(‘bill_depth_mm’, ‘mean’)\n\n\n\n\nAdelie\n15.5\n21.5\n18.4\n18.3464\n\n\nChinstrap\n16.4\n20.8\n18.45\n18.4206\n\n\nGentoo\n13.1\n17.3\n15\n14.9821\n\n\n\n1. Adelie 펭귄의 부리 길이가 가장 짧으며, 평균적으로 약 38.79mm이다.\n2. Chinstrap 펭귄이 가장 긴 부리를 가지며, 평균적으로 48.83mm로 측정됨.\n3. Gentoo 펭귄의 부리 길이는 Chinstrap보다는 짧지만, Adelie보다는 길다.\n\n\n3.2.3 종별 날개 길이(최소/최대/중앙값/평균)\n\n\n\n\n\n\n\n\n\n\nspecies\n(‘flip_len_mm’, ‘min’)\n(‘flip_len_mm’, ‘max’)\n(‘flip_len_mm’, ‘median’)\n(‘flip_len_mm’, ‘mean’)\n\n\n\n\nAdelie\n172\n210\n190\n189.954\n\n\nChinstrap\n178\n212\n196\n195.824\n\n\nGentoo\n203\n231\n216\n217.187\n\n\n\n\nGentoo 펭귄이 가장 긴 날개를 가짐 (평균 217.19mm)\nAdelie 펭귄의 날개 길이가 가장 짧음 (평균 189.95mm)\nChinstrap 펭귄은 Adelie와 Gentoo 사이에 위치 (평균 195.82mm)\n\n\n\n3.2.4 종별 몸무게(최소/최대/중앙값/평균)\n\n\n\n\n\n\n\n\n\n\nspecies\n(‘body_mass_g’, ‘min’)\n(‘body_mass_g’, ‘max’)\n(‘body_mass_g’, ‘median’)\n(‘body_mass_g’, ‘mean’)\n\n\n\n\nAdelie\n2850\n4775\n3700\n3700.66\n\n\nChinstrap\n2700\n4800\n3700\n3733.09\n\n\nGentoo\n3950\n6300\n5000\n5076.02\n\n\n\n\nGentoo 펭귄이 가장 무겁다 (평균 체중 5076.02g, 중앙값 5000g)\nAdelie와 Chinstrap 펭귄의 평균 체중은 비슷하지만, Chinstrap이 약간 더 무거움.\nAdelie 펭귄의 최소 체중(2850g)이 가장 가벼움, 반면 Gentoo 펭귄의 최대 체중(6300g)이 가장 무거움."
+  },
+  {
+    "objectID": "posts/penguin/penguin.html#평균-요약",
+    "href": "posts/penguin/penguin.html#평균-요약",
+    "title": "팔머펭귄 종별 특징 분석 _ 5조(김예원, 박한슬, 송성필)",
+    "section": "3.3 평균 요약",
+    "text": "3.3 평균 요약\n\n\n\n\n\n\n\n\n\n\n\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\n\n\n\n\nAdelie\n38.7914\n18.3464\n189.954\n3700.66\n\n\nGentoo\n47.5049\n14.9821\n217.187\n5076.02\n\n\nChinstrap\n48.8338\n18.4206\n195.824\n3733.09"
+  },
+  {
+    "objectID": "posts/penguin/penguin.html#서식지별-펭귄-정보",
+    "href": "posts/penguin/penguin.html#서식지별-펭귄-정보",
+    "title": "팔머펭귄 종별 특징 분석 _ 5조(김예원, 박한슬, 송성필)",
+    "section": "3.4 서식지별 펭귄 정보",
+    "text": "3.4 서식지별 펭귄 정보\n\n\n\n\nisland\nspecies\nsex\ncount\n\n\n\n\n0\nBiscoe\nAdelie\nfemale\n22\n\n\n1\nBiscoe\nAdelie\nmale\n22\n\n\n2\nBiscoe\nGentoo\nfemale\n58\n\n\n3\nBiscoe\nGentoo\nmale\n61\n\n\n4\nDream\nAdelie\nfemale\n27\n\n\n5\nDream\nAdelie\nmale\n28\n\n\n6\nDream\nChinstrap\nfemale\n34\n\n\n7\nDream\nChinstrap\nmale\n34\n\n\n8\nTorgersen\nAdelie\nfemale\n24\n\n\n9\nTorgersen\nAdelie\nmale\n23\n\n\n\n\n성비가 비교적 균형 잡혀 있음 (특히 Chinstrap 펭귄은 완전히 동일한 개체 수를 가짐).\nBiscoe 섬에 Gentoo 펭귄이 가장 많음 (전체 119마리, 수컷이 약간 많음).\nDream 섬에는 Chinstrap 펭귄만 서식함.\n\n\n\n\n\nisland\nspecies\ncount\n\n\n\n\n0\nBiscoe\nAdelie\n44\n\n\n1\nBiscoe\nGentoo\n124\n\n\n2\nDream\nAdelie\n56\n\n\n3\nDream\nChinstrap\n68\n\n\n4\nTorgersen\nAdelie\n52\n\n\n\n\nBiscoe 섬에 Gentoo 펭귄이 가장 많이 서식 (124마리).\nChinstrap 펭귄은 Dream 섬에만 분포 (총 68마리).\nAdelie 펭귄은 모든 섬에 걸쳐 서식하지만, 개체 수가 비교적 고르게 분포됨."
+  },
+  {
+    "objectID": "posts/penguin/penguin.html#연도별-조사-표본-수",
+    "href": "posts/penguin/penguin.html#연도별-조사-표본-수",
+    "title": "팔머펭귄 종별 특징 분석 _ 5조(김예원, 박한슬, 송성필)",
+    "section": "3.5 연도별 조사 표본 수",
+    "text": "3.5 연도별 조사 표본 수\n\n\n\n\nyear\ntotal_count\n\n\n\n\n0\n2007\n110\n\n\n1\n2008\n114\n\n\n2\n2009\n120"
+  },
+  {
+    "objectID": "posts/penguin/penguin.html#종합-결론",
+    "href": "posts/penguin/penguin.html#종합-결론",
+    "title": "팔머펭귄 종별 특징 분석 _ 5조(김예원, 박한슬, 송성필)",
+    "section": "4. 종합 결론",
+    "text": "4. 종합 결론\n• 부리 길이: Chinstrap 펭귄 &gt; Gentoo 펭귄 &gt; Adelie 펭귄\n• 부리 깊이: Adelie ≈ Chinstrap &gt; Gentoo\n• 날개 길이: Gentoo &gt; Chinstrap &gt; Adelie\n• 체중: Gentoo (가장 무거움) &gt; Chinstrap ≈ Adelie\n• 개체 수: Biscoe 섬에 Gentoo 펭귄이 가장 많고, Dream 섬에는 Chinstrap 펭귄만 존재."
+  },
+  {
+    "objectID": "posts/penguin/penguin.html#개선사항",
+    "href": "posts/penguin/penguin.html#개선사항",
+    "title": "팔머펭귄 종별 특징 분석 _ 5조(김예원, 박한슬, 송성필)",
+    "section": "5. 개선사항",
+    "text": "5. 개선사항\n\n데이터 해석 과정에서 오류가 있을 수 있음\nnan 값 및 이상치 처리 전후의 결과 비교를 추가로 고려할 필요성\n추후 분석 시 시각화 자료(그래프, 이미지) 등 보완 필요"
   }
 ]
