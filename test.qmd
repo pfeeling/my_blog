@@ -1,1 +1,4 @@
-aaaa
+
+title: "첫 Qmd 문서 만들기"
+format : html
+jypyter: python3
