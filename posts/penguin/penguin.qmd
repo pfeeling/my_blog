@@ -1,7 +1,16 @@
 ---
 title: "팔머펭귄 종별 특징 분석 _ 5조(김예원, 박한슬, 송성필)"
-format: html
 jupyter: python3
+
+listing:
+  contents: posts
+  sort: "date desc"
+  type: default
+  categories: true
+  sort-ui: false
+  filter-ui: false
+page-layout: full
+title-block-banner: true
 ---
 
 ## 1. 분석 개요 및 목표
