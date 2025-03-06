@@ -1,6 +1,6 @@
 ---
-title: "About"
-image: profile.jpg
+title: "seongpil blog"
+image: https://static.wikitide.net/greatcharacterswiki/f/f9/Xfgfjbvdhbvjhsdb.png
 about:
   template: jolla
   links:
@@ -12,8 +12,8 @@ about:
       href: https://linkedin.com
     - icon: github
       text: Github
-      href: https://github.com
+      href: https://github.com/pfeeling/feeling-blog.git
 
 ---
 
-About this blog
+thank you for visiting!
