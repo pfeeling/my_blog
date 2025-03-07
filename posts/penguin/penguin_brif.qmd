@@ -1,0 +1,158 @@
+---
+title: "팔머펭귄 종별 특징 분석 _ 5조(김예원, 박한슬, 송성필)"
+author: "song seong pil"
+date: "2025-03-07"
+categories: [news, code, analysis]
+image: "penguin.jpg"
+---
+## 1. 분석 개요 및 목표
+
+-   펭귄 3종(Adelie, Gentoo, Chinstrap)별 특징을 알아보자!
+
+## 2. 데이터소개
+
+-   **주요 변수:**
+    -   **신체 특성:** 부리 길이(`bill_length_mm`), 부리 깊이(`bill_depth_mm`), 날개 길이(`flip_len_mm`), 체중(`body_mass_g`)
+    -   **서식지:** 섬(`island`), 종(`species`), 성별(`sex`)
+    -   **연도:** 데이터 수집 연도(`year`)
+
+## 3. 분석 내용
+
+#### 3.1 종별 서식지
+
+|         | Adelie | Gentoo | Chinstrap |
+|:-------:|:------:|:------:|:---------:|
+| Torgers |   O    |   X    |     X     |
+| Biscoe  |   O    |   O    |     X     |
+|  Dream  |   O    |   X    |     O     |
+
+| species   | island                       |
+|-----------|------------------------------|
+| Adelie    | Torgersen', 'Biscoe', 'Dream |
+| Gentoo    | 'Biscoe                      |
+| Chinstrap | Dream                        |
+
+#### 상기 index는 다음을 나타낸다.
+
+Gentoo펭귄은 Biscoe섬만 서식한다.
+
+Chinstrap펭귄은 Dream섬에서만 서식한다.
+
+Adelie펭귄은 Torgers, Biscoe, Dream 전지역에서 서식한다.
+
+## 3.2 종별 신체 특성
+
+#### 3.2.1 종별 부리 길이(최소/최대/중앙값/평균)
+
+| species | ('bill_length_mm', 'min') | ('bill_length_mm', 'max') | ('bill_length_mm', 'median') | ('bill_length_mm', 'mean') |
+|:--------------|--------------:|--------------:|--------------:|--------------:|
+| Adelie | 32.1 | 46 | 38.8 | 38.7914 |
+| Chinstrap | 40.9 | 58 | 49.55 | 48.8338 |
+| Gentoo | 40.9 | 59.6 | 47.3 | 47.5049 |
+
+1.  Adelie 펭귄의 부리 길이가 가장 짧으며, 평균적으로 약 38.79mm이다.
+2.  Chinstrap 펭귄이 가장 긴 부리를 가지며, 평균적으로 48.83mm로 측정됨.
+3.  Gentoo 펭귄의 부리 길이는 Chinstrap보다는 짧지만, Adelie보다는 길다.
+
+#### 3.2.2 종별 부리 넓이(최소/최대/중앙값/평균)
+
+| species | ('bill_depth_mm', 'min') | ('bill_depth_mm', 'max') | ('bill_depth_mm', 'median') | ('bill_depth_mm', 'mean') |
+|:--------------|--------------:|--------------:|--------------:|--------------:|
+| Adelie | 15.5 | 21.5 | 18.4 | 18.3464 |
+| Chinstrap | 16.4 | 20.8 | 18.45 | 18.4206 |
+| Gentoo | 13.1 | 17.3 | 15 | 14.9821 |
+
+```         
+1. Adelie 펭귄의 부리 길이가 가장 짧으며, 평균적으로 약 38.79mm이다.
+2. Chinstrap 펭귄이 가장 긴 부리를 가지며, 평균적으로 48.83mm로 측정됨.
+3. Gentoo 펭귄의 부리 길이는 Chinstrap보다는 짧지만, Adelie보다는 길다.
+```
+
+#### 3.2.3 종별 날개 길이(최소/최대/중앙값/평균)
+
+| species | ('flip_len_mm', 'min') | ('flip_len_mm', 'max') | ('flip_len_mm', 'median') | ('flip_len_mm', 'mean') |
+|:--------------|--------------:|--------------:|--------------:|--------------:|
+| Adelie | 172 | 210 | 190 | 189.954 |
+| Chinstrap | 178 | 212 | 196 | 195.824 |
+| Gentoo | 203 | 231 | 216 | 217.187 |
+
+1.  Gentoo 펭귄이 가장 긴 날개를 가짐 (평균 217.19mm)
+2.  Adelie 펭귄의 날개 길이가 가장 짧음 (평균 189.95mm)
+3.  Chinstrap 펭귄은 Adelie와 Gentoo 사이에 위치 (평균 195.82mm)
+
+#### 3.2.4 종별 몸무게(최소/최대/중앙값/평균)
+
+| species | ('body_mass_g', 'min') | ('body_mass_g', 'max') | ('body_mass_g', 'median') | ('body_mass_g', 'mean') |
+|:--------------|--------------:|--------------:|--------------:|--------------:|
+| Adelie | 2850 | 4775 | 3700 | 3700.66 |
+| Chinstrap | 2700 | 4800 | 3700 | 3733.09 |
+| Gentoo | 3950 | 6300 | 5000 | 5076.02 |
+
+1. Gentoo 펭귄이 가장 무겁다 (평균 체중 5076.02g, 중앙값 5000g)
+2. Adelie와 Chinstrap 펭귄의 평균 체중은 비슷하지만, Chinstrap이 약간 더 무거움.
+3. **Adelie 펭귄의 최소 체중(2850g)**이 가장 가벼움, 반면 **Gentoo 펭귄의 최대 체중(6300g)**이 가장 무거움.
+
+## 3.3 평균 요약
+
+|           | bill_length_mm | bill_depth_mm | flipper_length_mm | body_mass_g |
+|:----------|---------------:|--------------:|------------------:|------------:|
+| Adelie    |        38.7914 |       18.3464 |           189.954 |     3700.66 |
+| Gentoo    |        47.5049 |       14.9821 |           217.187 |     5076.02 |
+| Chinstrap |        48.8338 |       18.4206 |           195.824 |     3733.09 |
+
+## 3.4 서식지별 펭귄 정보
+
+|     | island    | species   | sex    | count |
+|----:|:----------|:----------|:-------|------:|
+|   0 | Biscoe    | Adelie    | female |    22 |
+|   1 | Biscoe    | Adelie    | male   |    22 |
+|   2 | Biscoe    | Gentoo    | female |    58 |
+|   3 | Biscoe    | Gentoo    | male   |    61 |
+|   4 | Dream     | Adelie    | female |    27 |
+|   5 | Dream     | Adelie    | male   |    28 |
+|   6 | Dream     | Chinstrap | female |    34 |
+|   7 | Dream     | Chinstrap | male   |    34 |
+|   8 | Torgersen | Adelie    | female |    24 |
+|   9 | Torgersen | Adelie    | male   |    23 |
+
+1.  성비가 비교적 균형 잡혀 있음 (특히 Chinstrap 펭귄은 완전히 동일한 개체 수를 가짐).
+2.  Biscoe 섬에 Gentoo 펭귄이 가장 많음 (전체 119마리, 수컷이 약간 많음).
+3.  Dream 섬에는 Chinstrap 펭귄만 서식함.
+
+|     | island    | species   | count |
+|----:|:----------|:----------|------:|
+|   0 | Biscoe    | Adelie    |    44 |
+|   1 | Biscoe    | Gentoo    |   124 |
+|   2 | Dream     | Adelie    |    56 |
+|   3 | Dream     | Chinstrap |    68 |
+|   4 | Torgersen | Adelie    |    52 |
+
+1.  Biscoe 섬에 Gentoo 펭귄이 가장 많이 서식 (124마리).
+2.  Chinstrap 펭귄은 Dream 섬에만 분포 (총 68마리).
+3.  Adelie 펭귄은 모든 섬에 걸쳐 서식하지만, 개체 수가 비교적 고르게 분포됨.
+
+## 3.5 연도별 조사 표본 수
+
+|     | year | total_count |
+|:----|:----:|:-----------:|
+| 0   | 2007 |     110     |
+| 1   | 2008 |     114     |
+| 2   | 2009 |     120     |
+
+## 4. 종합 결론
+
+```         
+• 부리 길이: Chinstrap 펭귄 > Gentoo 펭귄 > Adelie 펭귄
+• 부리 깊이: Adelie ≈ Chinstrap > Gentoo
+• 날개 길이: Gentoo > Chinstrap > Adelie
+• 체중: Gentoo (가장 무거움) > Chinstrap ≈ Adelie
+• 개체 수: Biscoe 섬에 Gentoo 펭귄이 가장 많고, Dream 섬에는 Chinstrap 펭귄만 존재.
+```
+
+## 5. 개선사항
+
+-   데이터 해석 과정에서 오류가 있을 수 있음
+
+-   nan 값 및 이상치 처리 전후의 결과 비교를 추가로 고려할 필요성
+
+-   추후 분석 시 시각화 자료(그래프, 이미지) 등 보완 필요

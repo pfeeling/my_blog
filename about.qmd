@@ -1,6 +1,6 @@
 ---
 title: "seongpil blog"
-image: sponge.jpg
+image: "sponge.jpg"
 about:
   template: jolla
   links:
