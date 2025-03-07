@@ -3,7 +3,6 @@
     "listing": "/index.html",
     "items": [
       "/posts/my-first-post/index.html",
-      "/posts/penguin/penguin_brif.html",
       "/posts/post-with-code/index.html",
       "/posts/welcome/index.html"
     ]

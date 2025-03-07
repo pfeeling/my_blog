@@ -152,44 +152,8 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>what’s up!!!</p>
-<p>import numpy as np import pandas as pd from palmerpenguins import load_penguins</p>
-<section id="데이터-불러오기-및-기본-정보-출력" class="level1">
-<h1>1. 데이터 불러오기 및 기본 정보 출력</h1>
-<p>penguins = load_penguins() penguins.info()</p>
-</section>
-<section id="결측치-제거-및-종별-통계량-계산" class="level1">
-<h1>2. 결측치 제거 및 종별 통계량 계산</h1>
-<p>penguins = penguins.dropna() summary = penguins.groupby(‘species’)[[‘bill_length_mm’, ‘bill_depth_mm’, ‘flipper_length_mm’, ‘body_mass_g’]] stats = summary.agg([‘min’, ‘max’, ‘median’, ‘mean’]) print(“Species별 통계량:”) print(stats)pach</p>
-</section>
-<section id="각-측정값별-최대최소-값을-가진-종-확인" class="level1">
-<h1>3. 각 측정값별 최대/최소 값을 가진 종 확인</h1>
-<p>max_species = summary.idxmax() max_values = summary.max() min_species = summary.idxmin() min_values = summary.min()</p>
-</section>
-<section id="종별-통계량-계산-stats-dataframe" class="level1">
-<h1>1. 종별 통계량 계산 (stats DataFrame)</h1>
-<p>stats = summary.agg([‘min’, ‘max’, ‘median’, ‘mean’])</p>
-</section>
-<section id="stats의-multiindex-컬럼에서-mean만-추출" class="level1">
-<h1>2. stats의 MultiIndex 컬럼에서 ’mean’만 추출</h1>
-<p>mean_stats = stats.xs(‘mean’, axis=1, level=1)</p>
-</section>
-<section id="각-측정치별로-최대최소값과-해당-종-구하기" class="level1">
-<h1>3. 각 측정치별로 최대/최소값과 해당 종 구하기</h1>
-<p>max_species = mean_stats.idxmax() max_values = mean_stats.max() min_species = mean_stats.idxmin() min_values = mean_stats.min()</p>
-</section>
-<section id="결과-dataframe-생성-index는-각-측정치-이름이-됨" class="level1">
-<h1>4. 결과 DataFrame 생성: index는 각 측정치 이름이 됨</h1>
-<p>extreme_species = pd.DataFrame({ “Max Species”: max_species, “Max Value”: max_values, “Min Species”: min_species, “Min Value”: min_values })</p>
-<p>print(extreme_species)</p>
-<p>print(“측정값별 최대/최소 값을 가진 종:”) print(extreme_species)</p>
-</section>
-<section id="서식지별-성별-종별-개체-수-집계" class="level1">
-<h1>4. 서식지별, 성별, 종별 개체 수 집계</h1>
-<p>result = penguins.groupby([‘island’, ‘species’, ‘sex’]).size().reset_index(name=‘count’) print(“, 종, 성별 별 개체 수:”) print(result)</p>
-<p>result2 = penguins.groupby([‘island’, ‘species’]).size().reset_index(name=‘count’) print(“종별 개체 수:”) print(result2)</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
