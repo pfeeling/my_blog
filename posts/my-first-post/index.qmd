@@ -5,6 +5,8 @@ date: "2025-03-07"
 categories: [news, code, analysis]
 image: "penguin.jpg"
 ---
+
+펭귄 3종의 특성 분석
 ## 1. 분석 개요 및 목표
 
 -   펭귄 3종(Adelie, Gentoo, Chinstrap)별 특징을 알아보자!
@@ -157,4 +159,3 @@ Adelie펭귄은 Torgers, Biscoe, Dream 전지역에서 서식한다.
 
 -   추후 분석 시 시각화 자료(그래프, 이미지) 등 보완 필요
 
-펭귄 3종의 특성 분석
