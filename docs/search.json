@@ -11,7 +11,7 @@
     "href": "index.html",
     "title": "feeling-blog",
     "section": "",
-    "text": "팔머펭귄 종별 특징 분석 _ 5조(김예원, 박한슬, 송성필)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nMar 6, 2025\n\n\nsong seong pil\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nMar 3, 2025\n\n\nTristan O’Malley\n\n\n\n\n\n\nNo matching items"
+    "text": "Post With Code\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nMar 6, 2025\n\n\nsong seong pil\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nMar 3, 2025\n\n\nTristan O’Malley\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",
@@ -25,7 +25,7 @@
     "href": "posts/post-with-code/index.html",
     "title": "Post With Code",
     "section": "",
-    "text": "what’s up!!!"
+    "text": "what’s up!!!\nimport numpy as np import pandas as pd from palmerpenguins import load_penguins\n\n1. 데이터 불러오기 및 기본 정보 출력\npenguins = load_penguins() penguins.info()\n\n\n2. 결측치 제거 및 종별 통계량 계산\npenguins = penguins.dropna() summary = penguins.groupby(‘species’)[[‘bill_length_mm’, ‘bill_depth_mm’, ‘flipper_length_mm’, ‘body_mass_g’]] stats = summary.agg([‘min’, ‘max’, ‘median’, ‘mean’]) print(“Species별 통계량:”) print(stats)\n\n\n3. 각 측정값별 최대/최소 값을 가진 종 확인\nmax_species = summary.idxmax() max_values = summary.max() min_species = summary.idxmin() min_values = summary.min()\n\n\n1. 종별 통계량 계산 (stats DataFrame)\nstats = summary.agg([‘min’, ‘max’, ‘median’, ‘mean’])\n\n\n2. stats의 MultiIndex 컬럼에서 ’mean’만 추출\nmean_stats = stats.xs(‘mean’, axis=1, level=1)\n\n\n3. 각 측정치별로 최대/최소값과 해당 종 구하기\nmax_species = mean_stats.idxmax() max_values = mean_stats.max() min_species = mean_stats.idxmin() min_values = mean_stats.min()\n\n\n4. 결과 DataFrame 생성: index는 각 측정치 이름이 됨\nextreme_species = pd.DataFrame({ “Max Species”: max_species, “Max Value”: max_values, “Min Species”: min_species, “Min Value”: min_values })\nprint(extreme_species)\nprint(“측정값별 최대/최소 값을 가진 종:”) print(extreme_species)\n\n\n4. 서식지별, 성별, 종별 개체 수 집계\nresult = penguins.groupby([‘island’, ‘species’, ‘sex’]).size().reset_index(name=‘count’) print(“, 종, 성별 별 개체 수:”) print(result)\nresult2 = penguins.groupby([‘island’, ‘species’]).size().reset_index(name=‘count’) print(“종별 개체 수:”) print(result2)\n위에 코드가 안되는 거면 이거 임시로 쓰세요 ㅋㅋ"
   },
   {
     "objectID": "posts/penguin/penguin.html",

@@ -1,6 +1,6 @@
 ---
 title: "seongpil blog"
-image: https://static.wikitide.net/greatcharacterswiki/f/f9/Xfgfjbvdhbvjhsdb.png
+image: sponge.jpg
 about:
   template: jolla
   links:
