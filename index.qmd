@@ -1,6 +1,6 @@
 ---
-title: "feeling-blog"
-
+title: "my first post"
+author: seongpil
 
 listing:
   contents: posts
@@ -12,5 +12,18 @@ listing:
 page-layout: full
 title-block-banner: true
 ---
+
+## 파이썬 데이터 분석
+
+###넘파이
+
+넘파이 패키지를 불러옵시다. 
+
+```{python}
+import numpy as np
+
+a=np.array([3,2,15])
+a
+```
 
 

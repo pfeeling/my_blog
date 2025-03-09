@@ -6,7 +6,10 @@ categories: [news, code, analysis]
 image: "penguin.jpg"
 ---
 
+![](penguin.jpg)
+
 펭귄 3종의 특성 분석
+
 ## 1. 분석 개요 및 목표
 
 -   펭귄 3종(Adelie, Gentoo, Chinstrap)별 특징을 알아보자!
