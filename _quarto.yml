@@ -1,0 +1,25 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "LS_seongpil"
+  navbar:
+    right:
+      - about.qmd
+      - icon: github
+        href: https://github.com/pfeeling/feeling-blog
+     
+format:
+  html:
+    theme:
+      - litera
+      - brand
+    css: styles.css
+
+execute:
+  warning: false
+  freeze: auto
+
+
+
