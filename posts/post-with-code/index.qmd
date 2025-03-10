@@ -1,9 +1,0 @@
----
-title: "Post With Code"
-author: "song seong pil"
-date: "2025-03-06"
-categories: [news, code, analysis]
-image: "image.jpg"
----
-
-what's up!!!
