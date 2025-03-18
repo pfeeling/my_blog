@@ -1,0 +1,399 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+---
+title: 'Quiz 2 Solution'
+format: html
+jupyter: 
+  kernelspec:
+    name: "python3"
+    display_name: "Python (torch)"
+    language: "python"
+execute: 
+  warning: false
+  message: false
+---
+
+## 문제 1
+
+**Data description**
+
+임대아파트 입주자 퇴거여부 예측을 위한 데이터입니다.
+
+-   **순번**: 데이터의 순서를 나타내는 고유 번호
+
+-   **계약구분**: 계약의 유형(예: 유효, 해지)
+
+-   **재계약횟수**: 재계약이 이루어진 횟수
+
+-   **거주개월**: 해당 아파트에 거주한 총 개월 수
+
+-   **아파트 이름**: 아파트의 이름
+
+-   **아파트 ID**: 아파트를 식별하는 고유 ID
+
+-   **아파트 평점**: 아파트의 평점
+
+-   **호실고유번호**: 아파트의 특정 호실을 식별하는 고유 번호
+
+-   **층**: 거주하고 있는 층수
+
+-   **평형대**: 아파트의 면적(평수)
+
+-   **계약자고유번호**: 계약자를 식별하는 고유 번호
+
+-   **계약서고유번호**: 계약서를 식별하는 고유 번호
+
+-   **입주연도**: 처음 입주한 연도
+
+-   **퇴거연도**: 퇴거한 연도
+
+-   **거주연도**: 거주한 총 연도 수
+
+-   **월세(원)**: 월세 금액
+
+-   **보증금(원)**: 보증금 금액
+
+-   **대표나이**: 대표 거주자의 나이
+
+-   **나이**: 개별 거주자의 나이
+
+-   **성별**: 개별 거주자의 성별(예: 남, 여)
+
+-   **결혼여부**: 개별 거주자의 결혼 여부(예: 미혼, 기혼)
+
+-   **거주자 수**: 해당 호실에 거주하는 총 인원 수
+
+-   **퇴거 여부(target)**: 퇴거 여부(예: 미퇴거, 퇴거)
+
+```{python}
+import pandas as pd
+import numpy as np
+dat = pd.read_csv('data/fluentcom-f0f882a4e6f5c7e165d1bde9e425a192-fluentcom-problem1.csv')
+print(dat.head())
+```
+
+#### 문제 1. 불러온 데이터의 (행, 열)을 출력하세요.
+```{python}
+print(dat.shape)
+```
+
+#### 문제 2. 퇴거여부 칼럼은 퇴거, 미퇴거로 구분되어 있습니다. 퇴거, 미퇴거의 개수를 출력하세요.  
+
+```{python}
+dat.loc[:, '퇴거여부'].value_counts()
+```
+
+#### 문제 3. 보증금(원)의 최대값을 출력하세요. 
+
+```{python}
+dat.loc[:, '보증금(원)'].max()
+```
+
+#### 문제 4. 아파트 중 월세의 최대값이 가장 큰 아파트 이름을 출력하세요.
+
+```{python}
+dat.groupby(['아파트 이름'])['월세(원)'].max().idxmax()
+```
+
+
+#### 문제 5. 평균 거주자 수가 가장 많은 층을 출력하시오.
+
+```{python}
+floor_avg_residents = dat.groupby('층')['거주자 수'].mean().idxmax()
+print(floor_avg_residents)
+```
+
+
+#### 문제 6. 계약 구분은 유효, 해지로 구분되어 있습니다. 유효와 해지의 개수를 출력하세요.
+
+```{python}
+dat.groupby('계약구분')['계약구분'].count()
+```
+dat['계약구분'].val
+#### 문제 7. 계약자고유번호를 기준으로 거주연도 별 여러개의 데이터가 쌓여 있다. 각 계약자고유번호에 대해 가장 최신의 거주연도 행만 남긴 데이터를 생성하고, 행의 개수를 출력하시오.
+
+```{python}
+max_ind = dat.groupby('계약자고유번호')['거주연도'].idxmax()
+dat = dat.loc[max_ind, :].reset_index()
+print(dat.shape[0])
+```
+
+#### 문제 8. 아파트 평점, 계약구분 칼럼의 결측치를 확인하고, 결측치를 제거한 후 완성된 데이터의 행 개수를 출력하시오.
+
+```{python}
+miss_cnt = dat.loc[:, ['아파트 평점', '계약구분']].isna().sum()
+print(miss_cnt)
+
+#dat.loc[(~dat['아파트 평점'].isna()) & (~dat['계약구분'].isna())].shape[0]
+dat = dat.loc[(dat['아파트 평점'].notna()) & (dat['계약구분'].notna())]
+print(dat.shape[0])
+```
+
+#### 문제 9. 데이터에는 퇴거 여부, 거주개월, 퇴거연도 칼럼이 존재합니다. 퇴거연도 칼럼을 제거한 데이터를 생성하고, 데이터의 칼럼 개수를 제시하시오.
+
+-   퇴거연도 칼럼의 경우 해당 거주자가 퇴거를 안했을 때, 결측치가 생성됨 
+
+-   퇴거여부 칼럼과 거주개월 칼럼이 존재하므로, 두 칼럼을 통해 퇴거연도를 유추 가능
+
+-    따라서 퇴거연도 칼럼 제거 
+
+-    이전 문제에서 index를 생성했으므로, index 포함 총 23개 칼럼  
+
+```{python}
+dat = dat.drop(['퇴거연도'], axis = 1)
+print(dat.shape[1])
+```
+
+#### 문제 10. 재계약 횟수의 중앙값을 기준으로 중앙값보다 크거나 같으면 ‘높음’, 작으면 ‘낮음’ 으로 하는 이분 변수를 구성하시오. 이분 변수를 기준으로 다음의 요약 통계량을 계산하시오. 재계약 횟수 ‘높음’, ‘낮음’ 그룹 간 거주개월 수의 평균 계산하시오(소수점 둘째자리까지 표시).
+
+```{python}
+y = dat['재계약횟수']
+X = dat.drop(['재계약횟수'], axis = 1)
+
+cutoff = y.median()
+X['outcome_index'] = np.where(y >= cutoff, '높음', '낮음')
+```
+
+```{python}
+summary_stats = X.groupby("outcome_index")['거주개월'].mean().round(2)
+print(summary_stats) 
+```
+
+재계약횟수가 ’높음’인 경우 거주 개월 수도 높은 경향이 있음
+
+
+#### 문제 11. 재계약 횟수 ‘높음’, ‘낮음’ 그룹 간 월세(원) 평균 계산하시오(소수점 둘째자리까지 표시).
+
+```{python}
+summary_stats = X.groupby("outcome_index")['월세(원)'].mean().round(2)
+print(summary_stats) 
+```
+
+재계약횟수가 ’높음’인 경우 월세가 높은 경향이 있음
+
+#### 문제 12. 재계약 횟수 ‘높음’, ‘낮음’ 그룹 간 나이의 중앙값 계산하시오(소수점 둘째자리까지 표시).
+
+```{python}
+summary_stats = X.groupby("outcome_index")['나이'].median().round(2)
+print(summary_stats) 
+```
+
+재계약횟수가 ’높음’인 경우 거주 나이대는 높은 경향이 있음
+
+## 문제 2
+
+**Data description**
+
+경기 당 9이닝 동안 1번 타자, 2번 타자의 출루 정보를 기록한 데이터입니다.
+
+**수치 상세 내용**
+
+-   **1: 1루타**
+
+-   **2: 2루타**
+
+-   **3: 3루타**
+
+-   **4: 홈런**
+
+-   **5: 삼진 제외 모든 아웃**
+
+-   **6: 볼넷**
+
+-   **7: 삼진**
+
+-   **8: 몸에 맞는 공**
+
+-   **9: 희생 번트**
+
+**타자 행동**
+
+| 컬럼명   | 의미 (회 == 이닝)  |
+|----------|--------------------|
+| **a1_1** | 1회 첫 타자 행동   |
+| **a1_2** | 1회 둘째 타자 행동 |
+| **a2_1** | 2회 첫 타자 행동   |
+| **a2_2** | 2회 둘째 타자 행동 |
+| **a3_1** | 3회 첫 타자 행동   |
+| **a3_2** | 3회 둘째 타자 행동 |
+| **a4_1** | 4회 첫 타자 행동   |
+| **a4_2** | 4회 둘째 타자 행동 |
+| **a5_1** | 5회 첫 타자 행동   |
+| **a5_2** | 5회 둘째 타자 행동 |
+| **a6_1** | 6회 첫 타자 행동   |
+| **a6_2** | 6회 둘째 타자 행동 |
+| **a7_1** | 7회 첫 타자 행동   |
+| **a7_2** | 7회 둘째 타자 행동 |
+| **a8_1** | 8회 첫 타자 행동   |
+| **a8_2** | 8회 둘째 타자 행동 |
+| **a9_1** | 9회 첫 타자 행동   |
+| **a9_2** | 9회 둘째 타자 행동 |
+
+**득점**
+
+| 컬럼명 | 의미 (회 == 이닝) |
+|--------|-------------------|
+| **b1** | 1회 총 득점수     |
+| **b2** | 2회 총 득점수     |
+| **b3** | 3회 총 득점수     |
+| **b4** | 4회 총 득점수     |
+| **b5** | 5회 총 득점수     |
+| **b6** | 6회 총 득점수     |
+| **b7** | 7회 총 득점수     |
+| **b8** | 8회 총 득점수     |
+| **b9** | 9회 총 득점수     |
+
+```{python}
+dat = pd.read_csv('./data/problem2.csv')
+```
+
+#### 각 회차별로 1번 타자의 출루 (1,2,3루타와 사사구(볼넷, 몸에맞는공))가 있는 경우에 대해 득점이 발생 했는지 확인하고자 한다. 이를 위한 전처리를 수행하시오. (단, 첫 번째 혹은 두 번째 타자가 홈런을 친 경우 해당 회차 데이터 제외)
+
+```{python}
+print(dat.info())
+```
+
+#### 문제 13. 각 칼럼별 결측치를 확인하고, 결측치가 있는 칼럼과 결측치 개수를 출력하시오.
+
+```{python}
+dat.isna().sum()
+```
+
+a1_1(1회 첫 타자의 행동) 칼럼에 결측치가 12개 존재함 
+
+#### 문제 14. 결측치를 모두 제거한 데이터를 생성하고, 데이터의 행을 출력하시오.
+
+```{python}
+dat = dat.loc[~dat.a1_1.isna(), :]
+print(dat.shape[0])
+```
+
+#### 문제 15. 주어진 데이터에는 특수문자가 섞여있을 수 있습니다. 특수문자가 있을 경우 어떤 칼럼에 특수 문자가 존재하는지 칼럼명을 제시하시오.
+
+-   a_ 칼럼은 타자의 행동을 요약한 칼럼임
+
+-   .info()를 보면 a_의 일부 칼럼의 경우 object형인 것을 확인할 수 있음
+
+-   이를 통해 숫자형에 특수문자가 섞여있는지 유추해볼 수 있음 
+
+```{python}
+dat.a2_1.value_counts()
+dat.a4_1.value_counts()
+dat.a7_1.value_counts()
+
+#dat.a2_1.unique()
+#dat.a4_1.unique()
+#dat.a7_1.unique()
+```
+
+a2_1, a4_1, a7_1 칼럼에 특수문자가 존재한다.
+
+#### 문제 16. 특수문자가 제거된 칼럼의 경우(특수 문자가 있는 행을 제거한 후) 칼럼 속성이 잘못 표기되어 있습니다. 따라서 해당 칼럼의 속성을 int64로 일괄 변경해야 합니다. 칼럼 속성을 일괄 변경하고, 각 칼럼의 평균을 계산한 결과를 제시하시오(소수점 둘 째자리까지 표기). 칼럼 번호 순으로 평균을 표시합니다(예 : a1_1, a2_1, a3_1 : 10, 5, 19). 
+
+-   특수문자는 정규표현식을 활용할 필요가 없고, loc로 일괄 제거하면 됨
+
+```{python}
+#dat.shape
+dat = dat.loc[dat.a2_1 != ':', :]
+dat = dat.loc[dat.a4_1 != '&', :]
+dat = dat.loc[dat.a7_1 != '"', :]
+
+print(dat.shape[0])
+```
+
+-   object형에서 int형으로 변환 
+
+```{python}
+dat = dat.astype({'a2_1' : 'int64', 'a4_1' : 'int64', 'a7_1' : 'int64', 'a1_1' : 'int64'})
+
+print(dat.loc[:, ['a2_1', 'a4_1', 'a7_1']].mean().round(2))
+#print('1차 데이터 전처리 행 :', dat.shape[0])
+```
+
+
+#### 문제 17. game_id와 칼럼명이 _1로 끝나는 칼럼을 모두 추출하여, 데이터를 Long form으로 변경하세요. 완성된 데이터의 행 개수를 출력하세요. 판다스 함수 설정시 var_name = ‘ining1’, value_name = ‘first_move’, ignore_index = False 활용 바람
+
+```{python}
+sub_dat1 = pd.melt(dat, 
+                   id_vars = ['game_id'], 
+                   value_vars = dat.columns[dat.columns.str.endswith('_1')],
+                   var_name = 'ining1', 
+                   value_name = 'first_move', 
+                   ignore_index = False)
+
+sub_dat1.head()
+print(sub_dat1.shape[0])
+```
+
+#### 문제 18. game_id와 칼럼명이 _2로 끝나는 칼럼을 모두 추출하여, 데이터를 Long form으로 변경하세요. 완성된 데이터의 행 개수를 출력하세요. 판다스 함수 설정시 var_name = ‘ining2’, value_name = ‘second_move’, ignore_index = False 활용 바람
+
+-   a_number_1, a_number_2은 첫 타자의 행동으로 비슷한 의미를 갖으므로, melt를 통해 하나의 칼럼으로 요약 
+
+```{python}
+sub_dat2 = pd.melt(dat, 
+                   id_vars = ['game_id'], 
+                   value_vars = dat.columns[dat.columns.str.endswith('_2')],
+                   var_name = 'ining2', 
+                   value_name = 'second_move', 
+                   ignore_index = False)
+
+sub_dat2.head()
+print(sub_dat2.shape[0])
+```
+
+#### 문제 19. game_id와 칼럼명이 b로 시작되는 칼럼을 추출하여, 데이터를 Long form으로 변경하세요. 완성된 데이터는 다음과 같습니다. 완성된 데이터의 행 개수를 출력하세요. 판다스 함수 설정시 var_name = ‘ining’, value_name = ‘score’, ignore_index = False 활용 바람 
+
+-   b_number은 득점 수로 모두 비슷한 의미를 갖으므로, melt를 통해 하나의 칼럼으로 요약 
+
+```{python}
+sub_dat3 = pd.melt(dat, 
+                   id_vars = ['game_id'], 
+                   value_vars = dat.columns[dat.columns.str.startswith('b')],
+                   var_name = 'ining', 
+                   value_name = 'score', 
+                   ignore_index = False)
+
+print(sub_dat3.shape[0])
+```
+
+#### 문제 20. 작성한 두 데이터를 병합하여, 새로운 데이터를 생성하세요. 병합 조건은 inner join입니다. 병합이 완료된 데이터의 first_move, second_move의 평균을 계산하고, 출력하세요(소수점 둘째자리까지 표기).
+
+```{python}
+dat2 = pd.merge(sub_dat1, sub_dat2, on = ['game_id'], how = 'inner')
+dat2.loc[:, ['first_move', 'second_move']].mean().round(2)
+```
+
+#### 문제 22. 이전에 병합한 데이터와 새롭게 생성한 데이터를 병합하여 새로운 데이터를 생성하세요. 병합 조건은 inner join입니다. 병합이 완료된 데이터의 score의 평균을 출력하세요(소수점 둘째자리까지 표기). 
+
+```{python}
+dat3 = pd.merge(dat2, sub_dat3, on = ['game_id'], how = 'inner')
+dat3.loc[:, ['score']].mean().round(2)
+```
+
+#### 문제 21. 병합이 완료된 데이터에는 아직 미비한 부분이 있습니다. 아래 전처리를 추가로 수행하세요. 1번 타자의 출루 (1,2,3루타와 사사구(볼넷, 몸에맞는공)) 필터링하고, 행 개수를 출력하세요.
+
+```{python}
+dat3 = dat3.loc[dat3['first_move'].isin([1, 2, 3, 6, 8]), :]
+print(dat3.shape[0])
+```
+
+#### 문제 23. 첫 번째 혹은 두 번째 타자가 홈런을 친 경우를 제외하고 행 개수를 출력하세요.
+
+```{python}
+dat3 = dat3.loc[dat3['second_move'] != 4, :]
+print(dat3.shape[0])
+```
+
+#### 문제 24. 득점 발생 유무를 나타내는 이진 변수를 생성하고, second_move의 평균을 계산하시오.(변수명 : score_index, 1, 0으로 구분, 소수점 둘째자리까지 표기).
+
+```{python}
+dat3['score_index'] = np.where(dat3.score != 0, 1, 0)
+print(dat3.groupby('score_index')['second_move'].mean().round(2))
+```
+
+#### 문제 25. 최종 전처리 완료된 데이터의 전체 행, 열의 개수를 출력하세요.
+
+```{python}
+dat3.shape
+```
