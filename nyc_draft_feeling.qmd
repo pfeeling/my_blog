@@ -1,0 +1,226 @@
+---
+title: "nycflights13 3조 보고서(비행)"
+author: '3조'
+format:
+    revealjs:
+        logo: pa.jpg
+        
+        title-slide-attributes:
+            data-background-image: background.jpg
+            data-background-size: cover
+            data-background-opacity: "0.6"
+
+        theme: dark
+        reference-location: document
+        footer: 'LS 빅데이터 스쿨 3조 ( 김보경 / 박한슬 / 송설필 / 양현준 )'
+---
+# **part2**
+<br>
+<br>
+
+4-1 월별 출발·도착 지연 분석  
+4-2 월별 출발·도착 지연과 날씨의 관계
+
+
+## 주제 선정 이유 
+- 1. 모든 데이터가 3개의 공항에서 생성되었다.
+
+JFK(John F. Kennedy International Airport)  
+LGA(LaGuardia Airport)  
+EWR(Newark Liberty International Airport)
+
+- 2. 출발·도착의 지연이 발생한다면 특정 기간에  
+과도하게 발생되는 특징이 있을 것이다.
+- 3. 상기의 결과값에  
+뉴욕지역의 기후도 영향을 줄 수 있다.
+---
+
+## 월별 출발·도착 지연 최빈값
+
+```{python}
+#| echo: true
+#| code-fold: true
+from nycflights13 import flights, weather
+import pandas as pd
+
+# flights에서 특정 컬럼 추출
+picked = flights[['arr_delay', 'dep_delay', 'time_hour']]
+
+# picked['time_hour']의 타입 변환 (object -> datetime64)
+picked['time_hour'] = pd.to_datetime(picked['time_hour'])
+
+# 월정보 추출
+picked['month'] = picked['time_hour'].dt.month
+
+# 도착 지연 여부[True, False]
+picked['arr_delay_flag'] = picked['arr_delay'] > 0
+# 출발 지연 여부[True, False]
+picked['dep_delay_flag'] = picked['dep_delay'] > 0
+
+# 월별 지연 횟수 집계 [도착지연, 출발지연 True값의 합]
+monthly_delays = picked.groupby('month').agg(
+    arrival_delays=('arr_delay_flag', 'sum'),
+    departure_delays=('dep_delay_flag', 'sum')
+).reset_index()
+print(monthly_delays)
+```
+
+
+---
+## ** 도식화**
+```{python}
+#| echo: true
+#| code-fold: true
+#| eval: true
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+# X 축 위치 조정[동시에 출발·도착 지연 표기 위해]
+x = np.array(monthly_delays['month'])  # 월 (1~12)나열
+width = 0.4  # 막대 너비
+
+# 그래프 그리기 (도착 지연은 왼쪽, 출발 지연은 오른쪽)
+plt.figure(figsize=(10, 5))
+plt.bar(x - width/2, monthly_delays['arrival_delays'],
+         width=width, label='Arrival Delays', color='blue', alpha=0.7)
+plt.bar(x + width/2, monthly_delays['departure_delays'],
+         width=width, label='Departure Delays', color='red', alpha=0.7)
+
+plt.ticklabel_format(style='plain', axis='y')
+plt.ylim(6000, 16000)
+plt.xlabel('Month')
+plt.ylabel('Number of Delays')
+plt.title('Total montly Flight Delays')
+plt.xticks(ticks=range(1, 13))  # 1~12월 표시
+plt.legend()
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.show()
+```
+- 지연횟수가 가장 많은 달 : 12월
+- 지연횟수가 많은 구간=6~8월
+- **뉴욕공항의 지연은 12월과 여름철(6~8월)에 가장 빈번**
+
+---
+
+## 4-2 지연 출발·도착과 날씨의 관계
+
+월별 지연 횟수와 기상 요인  
+[온도, 풍속, 습도]의 상관관계 분석
+
+
+```{python}
+#| echo: true
+#| code-fold: true
+#| eval: true
+# flights, weather 두 데이터 프레임 merge 후 사용할 컬럼만 picked2 로 변환[온도, 풍속, 습도]
+#weather데이터 확인 
+weather.info()
+merged=pd.merge(flights, weather, how='inner')
+picked2=merged[['temp','wind_speed','humid','time_hour']]
+
+#picked2['time_hour']의 형식 변환 [object에서datetime64로 ]
+picked2['time_hour'] = pd.to_datetime(picked2['time_hour'])
+
+# 월정보 추출
+picked2['month'] = picked2['time_hour'].dt.month
+
+#월별 평균 기온, 풍속, 습도 측정
+weather_inf=picked2.groupby('month')[['temp','wind_speed','humid']].mean(numeric_only=True).reset_index()
+
+# 섭씨로 변환
+def celsius(fahrenheit):
+    return (fahrenheit - 32) * 5/9
+weather_inf['temp'] = weather_inf['temp'].apply(celsius)
+
+print(weather_inf)
+```
+
+---
+
+## ** 도식화**
+```{python}
+#| echo: true
+#| code-fold: true
+#| eval: true
+#각 해당그래프 출력
+plt.figure(figsize=(8, 4))
+plt.plot(weather_inf['month'],weather_inf['temp'],
+         label='temp', color='black', alpha=0.7)
+plt.plot(weather_inf['month'],weather_inf['humid'],
+         label='humid', color='blue', alpha=0.7)
+plt.plot(weather_inf['month'],weather_inf['wind_speed'],
+         label='wind_speed', color='green', alpha=0.7)
+
+plt.xlabel('Month')
+plt.ylabel('Weather_Data')
+plt.title('Montly Weather Info')
+plt.xticks(ticks=range(1, 13))  # 1~12월 표시
+plt.legend()
+plt.grid(axis='both', linestyle='--', alpha=0.7)
+plt.show()
+
+```
+
+---
+
+## 두 그래프 비교
+
+<div style="display: flex;">
+  <div style="flex: 60%;">
+```{python}
+#| code-fold: true
+#| eval: true
+import matplotlib.pyplot as plt
+import numpy as np
+
+# 두 개의 그래프를 위아래로 배치
+fig, ax = plt.subplots(2, 1, figsize=(6, 6))  # 2개의 행으로 그래프 배치
+
+# 첫 번째 그래프 (위쪽): 날씨 정보 그래프
+ax[0].plot(weather_inf['month'], weather_inf['temp'], label='temp', color='black', alpha=0.7)
+ax[0].plot(weather_inf['month'], weather_inf['humid'], label='humid', color='blue', alpha=0.7)
+ax[0].plot(weather_inf['month'], weather_inf['wind_speed'], label='wind_speed', color='green', alpha=0.7)
+
+ax[0].set_xlabel('Month')
+ax[0].set_ylabel('Weather Data')
+ax[0].set_title('Monthly Weather Info')
+ax[0].set_xticks(range(1, 13))  # 1~12월 표시
+ax[0].legend()
+ax[0].grid(axis='both', linestyle='--', alpha=0.7)
+
+# 두 번째 그래프 (아래쪽): 도착 및 출발 지연 그래프
+ax[1].bar(x - width / 2, monthly_delays['arrival_delays'], width=width, label='Arrival Delays', color='blue', alpha=0.7)
+ax[1].bar(x + width / 2, monthly_delays['departure_delays'], width=width, label='Departure Delays', color='red', alpha=0.7)
+
+ax[1].set_xlabel('Month')
+ax[1].set_ylabel('Number of Delays')
+ax[1].set_title('Monthly Flight Delays')
+ax[1].set_xticks(range(1, 13))  # 1~12월 표시
+ax[1].legend()
+ax[1].grid(axis='y', linestyle='--', alpha=0.7)
+
+plt.tight_layout()
+plt.show()
+```
+   
+</div>
+
+  <div style="flex: 50%; font-size: 45px;">
+    풍속
+    상관관계 미미
+    
+
+    습도
+    여름,겨울 습도 높음
+    →지연과 높은 상관
+    
+
+    온도
+    지연이 많은 6, 7, 8, 12월
+    온도 편차 증가→상관관계 있음
+  </div>
+</div>
+ 
+
+
+

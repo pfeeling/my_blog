@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="20250318revealjs_files/libs/clipboard/clipboard.min.js"></script>
-<script src="20250318revealjs_files/libs/quarto-html/tabby.min.js"></script>
-<script src="20250318revealjs_files/libs/quarto-html/popper.min.js"></script>
-<script src="20250318revealjs_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="20250318revealjs_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="20250318revealjs_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="20250318revealjs_files/libs/quarto-html/quarto-syntax-highlighting-dark-b53751a350365c71b6c909e95f209ed1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<script src="nyc_draft_feeling_files/libs/clipboard/clipboard.min.js"></script>
+<script src="nyc_draft_feeling_files/libs/quarto-html/tabby.min.js"></script>
+<script src="nyc_draft_feeling_files/libs/quarto-html/popper.min.js"></script>
+<script src="nyc_draft_feeling_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="nyc_draft_feeling_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="nyc_draft_feeling_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="nyc_draft_feeling_files/libs/quarto-html/quarto-syntax-highlighting-dark-b53751a350365c71b6c909e95f209ed1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.6.42">
 
-  <meta name="author" content="03조">
-  <title>뉴욕 비행장 데이터 분석</title>
+  <meta name="author" content="3조">
+  <title>nycflights13 3조 보고서(비행)</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="20250318revealjs_files/libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="20250318revealjs_files/libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="nyc_draft_feeling_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="nyc_draft_feeling_files/libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -94,12 +94,11 @@
     code span.vs { color: #abe338; } /* VerbatimString */
     code span.wa { color: #dcc6e0; } /* Warning */
   </style>
-  <link rel="stylesheet" href="20250318revealjs_files/libs/revealjs/dist/theme/quarto-b17fa0af1ad93c2b7802af2443afaf9b.css">
-  <link rel="stylesheet" href="20250318feeling_style.css">
-  <link href="20250318revealjs_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="20250318revealjs_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="20250318revealjs_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="20250318revealjs_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link rel="stylesheet" href="nyc_draft_feeling_files/libs/revealjs/dist/theme/quarto-949fcd71989a651394be00d684876026.css">
+  <link href="nyc_draft_feeling_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="nyc_draft_feeling_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="nyc_draft_feeling_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="nyc_draft_feeling_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
     .reveal div.sourceCode {
       margin: 0;
@@ -187,258 +186,292 @@
       margin-right: 0; 
     }
   </style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-  
-  <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
-  <script type="text/javascript">
-  window.PlotlyConfig = {MathJaxConfig: 'local'};
-  if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}
-  if (typeof require !== 'undefined') {
-  require.undef("plotly");
-  requirejs.config({
-      paths: {
-          'plotly': ['https://cdn.plot.ly/plotly-2.35.2.min']
-      }
-  });
-  require(['plotly'], function(Plotly) {
-      window._Plotly = Plotly;
-  });
-  }
-  </script>
-
 </head>
 <body class="quarto-dark">
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">뉴욕 비행장 데이터 분석</h1>
+<section id="title-slide" data-background-image="background.jpg" data-background-opacity="0.6" data-background-size="cover" class="quarto-title-block center">
+  <h1 class="title">nycflights13 3조 보고서(비행)</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-03조 
+3조 
 </div>
 </div>
 </div>
 
 </section>
 <section>
-<section id="뉴욕-비행장-데이터를-알아보자" class="title-slide slide level1 center">
-<h1>뉴욕 비행장 데이터를 알아보자!</h1>
-
+<section id="part2" class="title-slide slide level1 center">
+<h1><strong>part2</strong></h1>
+<p><br> <br></p>
+<p>4-1 월별 출발·도착 지연 분석<br>
+4-2 월별 출발·도착 지연과 날씨의 관계</p>
 </section>
-<section id="기본정보" class="slide level2">
-<h2>기본정보</h2>
-<h3 id="차례대로-보여지게-만들기">차례대로 보여지게 만들기</h3>
+<section id="주제-선정-이유" class="slide level2">
+<h2>주제 선정 이유</h2>
 <ul>
-<li>다음과 같이 비행장 데이터 ’flights’를 불러오도록 하겠습니다.</li>
+<li><ol type="1">
+<li>모든 데이터가 3개의 공항에서 생성되었다.</li>
+</ol></li>
 </ul>
-<div id="ab652876" class="cell" data-execution_count="1">
+<p>JFK(John F. Kennedy International Airport)<br>
+LGA(LaGuardia Airport)<br>
+EWR(Newark Liberty International Airport)</p>
+<ul>
+<li><ol start="2" type="1">
+<li>출발·도착의 지연이 발생한다면 특정 기간에<br>
+과도하게 발생되는 특징이 있을 것이다.</li>
+</ol></li>
+<li><ol start="3" type="1">
+<li>상기의 결과값에<br>
+뉴욕지역의 기후도 영향을 줄 수 있다.</li>
+</ol></li>
+</ul>
+</section>
+<section id="월별-출발도착-지연-최빈값" class="slide level2">
+<h2>월별 출발·도착 지연 최빈값</h2>
+<div id="ee54b0a0" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href=""></a><span class="im">from</span> nycflights13 <span class="im">import</span> flights, weather</span>
+<span id="cb1-2"><a href=""></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href=""></a></span>
+<span id="cb1-4"><a href=""></a><span class="co"># flights에서 특정 컬럼 추출</span></span>
+<span id="cb1-5"><a href=""></a>picked <span class="op">=</span> flights[[<span class="st">'arr_delay'</span>, <span class="st">'dep_delay'</span>, <span class="st">'time_hour'</span>]]</span>
+<span id="cb1-6"><a href=""></a></span>
+<span id="cb1-7"><a href=""></a><span class="co"># picked['time_hour']의 타입 변환 (object -&gt; datetime64)</span></span>
+<span id="cb1-8"><a href=""></a>picked[<span class="st">'time_hour'</span>] <span class="op">=</span> pd.to_datetime(picked[<span class="st">'time_hour'</span>])</span>
+<span id="cb1-9"><a href=""></a></span>
+<span id="cb1-10"><a href=""></a><span class="co"># 월정보 추출</span></span>
+<span id="cb1-11"><a href=""></a>picked[<span class="st">'month'</span>] <span class="op">=</span> picked[<span class="st">'time_hour'</span>].dt.month</span>
+<span id="cb1-12"><a href=""></a></span>
+<span id="cb1-13"><a href=""></a><span class="co"># 도착 지연 여부[True, False]</span></span>
+<span id="cb1-14"><a href=""></a>picked[<span class="st">'arr_delay_flag'</span>] <span class="op">=</span> picked[<span class="st">'arr_delay'</span>] <span class="op">&gt;</span> <span class="dv">0</span></span>
+<span id="cb1-15"><a href=""></a><span class="co"># 출발 지연 여부[True, False]</span></span>
+<span id="cb1-16"><a href=""></a>picked[<span class="st">'dep_delay_flag'</span>] <span class="op">=</span> picked[<span class="st">'dep_delay'</span>] <span class="op">&gt;</span> <span class="dv">0</span></span>
+<span id="cb1-17"><a href=""></a></span>
+<span id="cb1-18"><a href=""></a><span class="co"># 월별 지연 횟수 집계 [도착지연, 출발지연 True값의 합]</span></span>
+<span id="cb1-19"><a href=""></a>monthly_delays <span class="op">=</span> picked.groupby(<span class="st">'month'</span>).agg(</span>
+<span id="cb1-20"><a href=""></a>    arrival_delays<span class="op">=</span>(<span class="st">'arr_delay_flag'</span>, <span class="st">'sum'</span>),</span>
+<span id="cb1-21"><a href=""></a>    departure_delays<span class="op">=</span>(<span class="st">'dep_delay_flag'</span>, <span class="st">'sum'</span>)</span>
+<span id="cb1-22"><a href=""></a>).reset_index()</span>
+<span id="cb1-23"><a href=""></a><span class="bu">print</span>(monthly_delays)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>    month  arrival_delays  departure_delays
+0       1           11095              9600
+1       2           10148              9160
+2       3           10922             11227
+3       4           12568             10568
+4       5           10174             11266
+5       6           12436             12616
+6       7           13350             13951
+7       8           11653             11736
+8       9            6836              7808
+9      10            9809              8712
+10     11            9647              8209
+11     12           14366             13579</code></pre>
+</div>
+</div>
+</section>
+<section id="도식화" class="slide level2">
+<h2>** 도식화**</h2>
+<div id="558a3802" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href=""></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-2"><a href=""></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-3"><a href=""></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-4"><a href=""></a><span class="co"># X 축 위치 조정[동시에 출발·도착 지연 표기 위해]</span></span>
+<span id="cb3-5"><a href=""></a>x <span class="op">=</span> np.array(monthly_delays[<span class="st">'month'</span>])  <span class="co"># 월 (1~12)나열</span></span>
+<span id="cb3-6"><a href=""></a>width <span class="op">=</span> <span class="fl">0.4</span>  <span class="co"># 막대 너비</span></span>
+<span id="cb3-7"><a href=""></a></span>
+<span id="cb3-8"><a href=""></a><span class="co"># 그래프 그리기 (도착 지연은 왼쪽, 출발 지연은 오른쪽)</span></span>
+<span id="cb3-9"><a href=""></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb3-10"><a href=""></a>plt.bar(x <span class="op">-</span> width<span class="op">/</span><span class="dv">2</span>, monthly_delays[<span class="st">'arrival_delays'</span>],</span>
+<span id="cb3-11"><a href=""></a>         width<span class="op">=</span>width, label<span class="op">=</span><span class="st">'Arrival Delays'</span>, color<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb3-12"><a href=""></a>plt.bar(x <span class="op">+</span> width<span class="op">/</span><span class="dv">2</span>, monthly_delays[<span class="st">'departure_delays'</span>],</span>
+<span id="cb3-13"><a href=""></a>         width<span class="op">=</span>width, label<span class="op">=</span><span class="st">'Departure Delays'</span>, color<span class="op">=</span><span class="st">'red'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb3-14"><a href=""></a></span>
+<span id="cb3-15"><a href=""></a>plt.ticklabel_format(style<span class="op">=</span><span class="st">'plain'</span>, axis<span class="op">=</span><span class="st">'y'</span>)</span>
+<span id="cb3-16"><a href=""></a>plt.ylim(<span class="dv">6000</span>, <span class="dv">16000</span>)</span>
+<span id="cb3-17"><a href=""></a>plt.xlabel(<span class="st">'Month'</span>)</span>
+<span id="cb3-18"><a href=""></a>plt.ylabel(<span class="st">'Number of Delays'</span>)</span>
+<span id="cb3-19"><a href=""></a>plt.title(<span class="st">'Total montly Flight Delays'</span>)</span>
+<span id="cb3-20"><a href=""></a>plt.xticks(ticks<span class="op">=</span><span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">13</span>))  <span class="co"># 1~12월 표시</span></span>
+<span id="cb3-21"><a href=""></a>plt.legend()</span>
+<span id="cb3-22"><a href=""></a>plt.grid(axis<span class="op">=</span><span class="st">'y'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb3-23"><a href=""></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="nyc_draft_feeling_files/figure-revealjs/cell-3-output-1.png" width="833" height="449"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>지연횟수가 가장 많은 달 : 12월</li>
+<li>지연횟수가 많은 구간=6~8월</li>
+<li><strong>뉴욕공항의 지연은 12월과 여름철(6~8월)에 가장 빈번</strong></li>
+</ul>
+</section>
+<section id="지연-출발도착과-날씨의-관계" class="slide level2">
+<h2>4-2 지연 출발·도착과 날씨의 관계</h2>
+<p>월별 지연 횟수와 기상 요인<br>
+[온도, 풍속, 습도]의 상관관계 분석</p>
+<div id="19b3989d" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href=""></a><span class="co"># flights, weather 두 데이터 프레임 merge 후 사용할 컬럼만 picked2 로 변환[온도, 풍속, 습도]</span></span>
+<span id="cb4-2"><a href=""></a><span class="co">#weather데이터 확인 </span></span>
+<span id="cb4-3"><a href=""></a>weather.info()</span>
+<span id="cb4-4"><a href=""></a>merged<span class="op">=</span>pd.merge(flights, weather, how<span class="op">=</span><span class="st">'inner'</span>)</span>
+<span id="cb4-5"><a href=""></a>picked2<span class="op">=</span>merged[[<span class="st">'temp'</span>,<span class="st">'wind_speed'</span>,<span class="st">'humid'</span>,<span class="st">'time_hour'</span>]]</span>
+<span id="cb4-6"><a href=""></a></span>
+<span id="cb4-7"><a href=""></a><span class="co">#picked2['time_hour']의 형식 변환 [object에서datetime64로 ]</span></span>
+<span id="cb4-8"><a href=""></a>picked2[<span class="st">'time_hour'</span>] <span class="op">=</span> pd.to_datetime(picked2[<span class="st">'time_hour'</span>])</span>
+<span id="cb4-9"><a href=""></a></span>
+<span id="cb4-10"><a href=""></a><span class="co"># 월정보 추출</span></span>
+<span id="cb4-11"><a href=""></a>picked2[<span class="st">'month'</span>] <span class="op">=</span> picked2[<span class="st">'time_hour'</span>].dt.month</span>
+<span id="cb4-12"><a href=""></a></span>
+<span id="cb4-13"><a href=""></a><span class="co">#월별 평균 기온, 풍속, 습도 측정</span></span>
+<span id="cb4-14"><a href=""></a>weather_inf<span class="op">=</span>picked2.groupby(<span class="st">'month'</span>)[[<span class="st">'temp'</span>,<span class="st">'wind_speed'</span>,<span class="st">'humid'</span>]].mean(numeric_only<span class="op">=</span><span class="va">True</span>).reset_index()</span>
+<span id="cb4-15"><a href=""></a></span>
+<span id="cb4-16"><a href=""></a><span class="co"># 섭씨로 변환</span></span>
+<span id="cb4-17"><a href=""></a><span class="kw">def</span> celsius(fahrenheit):</span>
+<span id="cb4-18"><a href=""></a>    <span class="cf">return</span> (fahrenheit <span class="op">-</span> <span class="dv">32</span>) <span class="op">*</span> <span class="dv">5</span><span class="op">/</span><span class="dv">9</span></span>
+<span id="cb4-19"><a href=""></a>weather_inf[<span class="st">'temp'</span>] <span class="op">=</span> weather_inf[<span class="st">'temp'</span>].<span class="bu">apply</span>(celsius)</span>
+<span id="cb4-20"><a href=""></a></span>
+<span id="cb4-21"><a href=""></a><span class="bu">print</span>(weather_inf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
-RangeIndex: 336776 entries, 0 to 336775
-Data columns (total 19 columns):
- #   Column          Non-Null Count   Dtype  
----  ------          --------------   -----  
- 0   year            336776 non-null  int64  
- 1   month           336776 non-null  int64  
- 2   day             336776 non-null  int64  
- 3   dep_time        328521 non-null  float64
- 4   sched_dep_time  336776 non-null  int64  
- 5   dep_delay       328521 non-null  float64
- 6   arr_time        328063 non-null  float64
- 7   sched_arr_time  336776 non-null  int64  
- 8   arr_delay       327346 non-null  float64
- 9   carrier         336776 non-null  object 
- 10  flight          336776 non-null  int64  
- 11  tailnum         334264 non-null  object 
- 12  origin          336776 non-null  object 
- 13  dest            336776 non-null  object 
- 14  air_time        327346 non-null  float64
- 15  distance        336776 non-null  int64  
- 16  hour            336776 non-null  int64  
- 17  minute          336776 non-null  int64  
- 18  time_hour       336776 non-null  object 
-dtypes: float64(5), int64(9), object(5)
-memory usage: 48.8+ MB
-&lt;class 'pandas.core.frame.DataFrame'&gt;
-RangeIndex: 3322 entries, 0 to 3321
-Data columns (total 9 columns):
- #   Column        Non-Null Count  Dtype  
----  ------        --------------  -----  
- 0   tailnum       3322 non-null   object 
- 1   year          3252 non-null   float64
- 2   type          3322 non-null   object 
- 3   manufacturer  3322 non-null   object 
- 4   model         3322 non-null   object 
- 5   engines       3322 non-null   int64  
- 6   seats         3322 non-null   int64  
- 7   speed         23 non-null     float64
- 8   engine        3322 non-null   object 
-dtypes: float64(2), int64(2), object(5)
-memory usage: 233.7+ KB</code></pre>
+RangeIndex: 26115 entries, 0 to 26114
+Data columns (total 15 columns):
+ #   Column      Non-Null Count  Dtype  
+---  ------      --------------  -----  
+ 0   origin      26115 non-null  object 
+ 1   year        26115 non-null  int64  
+ 2   month       26115 non-null  int64  
+ 3   day         26115 non-null  int64  
+ 4   hour        26115 non-null  int64  
+ 5   temp        26114 non-null  float64
+ 6   dewp        26114 non-null  float64
+ 7   humid       26114 non-null  float64
+ 8   wind_dir    25655 non-null  float64
+ 9   wind_speed  26111 non-null  float64
+ 10  wind_gust   5337 non-null   float64
+ 11  precip      26115 non-null  float64
+ 12  pressure    23386 non-null  float64
+ 13  visib       26115 non-null  float64
+ 14  time_hour   26115 non-null  object 
+dtypes: float64(9), int64(4), object(2)
+memory usage: 3.0+ MB
+    month       temp  wind_speed      humid
+0       1   2.525715   11.459173  58.623139
+1       2   1.939908   12.669807  59.773079
+2       3   5.049166   13.653286  55.084655
+3       4  11.948220   12.048894  52.155672
+4       5  17.635570   10.527423  62.200192
+5       6  23.298179   11.160948  63.768982
+6       7  27.571330   10.421638  63.230414
+7       8  24.401296    9.374339  61.031146
+8       9  20.699698    9.552168  58.319215
+9      10  16.410452   10.265326  60.372475
+10     11   7.931197   12.305428  53.638844
+11     12   4.072366   10.163533  66.278443</code></pre>
 </div>
 </div>
 </section>
-<section class="slide level2">
-
-<p>대쉬 3개를 사용하면 (’—) 다음페이지 생성됨</p>
-<p>다음과 같은 아이템의 경우 차례로 보여짐</p>
-<ul>
-<li>1번아이템</li>
-<li>2번아이템</li>
-<li>3번아이템</li>
-</ul>
-</section>
-<section id="제목" class="slide level2">
-<h2>제목</h2>
-<div class="columns">
-<div class="column" style="width:40%;">
-<p>이부분은 40%를 차지하고,</p>
-</div><div class="column" style="width:60%;">
-<p>이부분은 60%를 차지하고,</p>
-</div></div>
-</section>
-<section id="내용-작게-만들기" class="slide level2 smaller">
-<h2>내용 작게 만들기</h2>
-<p>이부분은 글씨가 작아짐</p>
-<aside class="notes">
-<p>말할 내용을 적어봅시다.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-<p>::::::</p>
-</section>
-<section id="스크롤-가능하게-만들기" class="slide level2 scrollable">
-<h2>스크롤 가능하게 만들기</h2>
-<ul>
-<li>아이템들</li>
-<li>아이템들</li>
-<li>아이템들</li>
-<li>아이템들</li>
-<li>아이템들</li>
-<li>아이템들</li>
-<li>아이템들</li>
-<li>아이템들</li>
-<li>아이템들</li>
-</ul>
-</section>
-<section id="asides-효과-테스트" class="slide level2">
-<h2>Asides 효과 테스트</h2>
-<p>다음은 특정 비행장<sup>1</sup> 관련 데이터 입니다.</p>
-
-<aside><div>
-<p>뉴욕시에는 3개의비행장이 있음.</p>
-</div><ol class="aside-footnotes"><li id="fn1"><p>애틀랜타 비행장</p></li></ol></aside></section>
-<section id="코드-하이라이팅" class="slide level2">
-<h2>코드 하이라이팅</h2>
-<div class="sourceCode" id="cb2" data-code-line-numbers="6|8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href=""></a><span class="co">#| echo: true</span></span>
-<span id="cb2-2"><a href=""></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb2-3"><a href=""></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb2-4"><a href=""></a></span>
-<span id="cb2-5"><a href=""></a>r <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.01</span>)</span>
-<span id="cb2-6"><a href=""></a>theta <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> r</span>
-<span id="cb2-7"><a href=""></a>fig, ax <span class="op">=</span> plt.subplots(subplot_kw<span class="op">=</span>{<span class="st">'projection'</span>: <span class="st">'polar'</span>})</span>
-<span id="cb2-8"><a href=""></a>ax.plot(theta, r)</span>
-<span id="cb2-9"><a href=""></a>ax.set_rticks([<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="fl">1.5</span>, <span class="dv">2</span>])</span>
-<span id="cb2-10"><a href=""></a>ax.grid(<span class="va">True</span>)</span>
-<span id="cb2-11"><a href=""></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="인터렉티브-시각화" class="slide level2">
-<h2>인터렉티브 시각화</h2>
-<div id="c2726500" class="cell columns column-output-location" data-execution_count="2">
-<div class="column">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href=""></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
-<span id="cb3-2"><a href=""></a>fig<span class="op">=</span>px.scatter(</span>
-<span id="cb3-3"><a href=""></a>    x<span class="op">=</span>[<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>],</span>
-<span id="cb3-4"><a href=""></a>    y<span class="op">=</span>[<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">9</span>,<span class="dv">16</span>])</span>
-<span id="cb3-5"><a href=""></a>fig.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column fragment">
+<section id="도식화-1" class="slide level2">
+<h2>** 도식화**</h2>
+<div id="d1fa7e92" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href=""></a><span class="co">#각 해당그래프 출력</span></span>
+<span id="cb6-2"><a href=""></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
+<span id="cb6-3"><a href=""></a>plt.plot(weather_inf[<span class="st">'month'</span>],weather_inf[<span class="st">'temp'</span>],</span>
+<span id="cb6-4"><a href=""></a>         label<span class="op">=</span><span class="st">'temp'</span>, color<span class="op">=</span><span class="st">'black'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb6-5"><a href=""></a>plt.plot(weather_inf[<span class="st">'month'</span>],weather_inf[<span class="st">'humid'</span>],</span>
+<span id="cb6-6"><a href=""></a>         label<span class="op">=</span><span class="st">'humid'</span>, color<span class="op">=</span><span class="st">'blue'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb6-7"><a href=""></a>plt.plot(weather_inf[<span class="st">'month'</span>],weather_inf[<span class="st">'wind_speed'</span>],</span>
+<span id="cb6-8"><a href=""></a>         label<span class="op">=</span><span class="st">'wind_speed'</span>, color<span class="op">=</span><span class="st">'green'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb6-9"><a href=""></a></span>
+<span id="cb6-10"><a href=""></a>plt.xlabel(<span class="st">'Month'</span>)</span>
+<span id="cb6-11"><a href=""></a>plt.ylabel(<span class="st">'Weather_Data'</span>)</span>
+<span id="cb6-12"><a href=""></a>plt.title(<span class="st">'Montly Weather Info'</span>)</span>
+<span id="cb6-13"><a href=""></a>plt.xticks(ticks<span class="op">=</span><span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">13</span>))  <span class="co"># 1~12월 표시</span></span>
+<span id="cb6-14"><a href=""></a>plt.legend()</span>
+<span id="cb6-15"><a href=""></a>plt.grid(axis<span class="op">=</span><span class="st">'both'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb6-16"><a href=""></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
-<div>                            <div id="e48ea5c2-bc63-4892-b9ab-a7b2d9c8fbdf" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("e48ea5c2-bc63-4892-b9ab-a7b2d9c8fbdf")) {                    Plotly.newPlot(                        "e48ea5c2-bc63-4892-b9ab-a7b2d9c8fbdf",                        [{"hovertemplate":"x=%{x}\u003cbr\u003ey=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"","marker":{"color":"#636efa","symbol":"circle"},"mode":"markers","name":"","orientation":"v","showlegend":false,"x":[0,1,2,3,4],"xaxis":"x","y":[0,1,4,9,16],"yaxis":"y","type":"scatter"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"},"margin":{"b":0,"l":0,"r":0,"t":30}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"x"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"y"}},"legend":{"tracegroupgap":0}},                        {"responsive": true}                    ).then(function(){
-                            
-var gd = document.getElementById('e48ea5c2-bc63-4892-b9ab-a7b2d9c8fbdf');
-var x = new MutationObserver(function (mutations, observer) {{
-        var display = window.getComputedStyle(gd).display;
-        if (!display || display === 'none') {{
-            console.log([gd, 'removed!']);
-            Plotly.purge(gd);
-            observer.disconnect();
-        }}
-}});
-
-// Listen for the removal of the full notebook cells
-var notebookContainer = gd.closest('#notebook-container');
-if (notebookContainer) {{
-    x.observe(notebookContainer, {childList: true});
-}}
-
-// Listen for the clearing of the current output cell
-var outputEl = gd.closest('.output');
-if (outputEl) {{
-    x.observe(outputEl, {childList: true});
-}}
-
-                        })                };                });            </script>        </div>
-</div>
-</div></div>
-</section>
-<section id="탭셋-구현하기" class="slide level2">
-<h2>탭셋 구현하기</h2>
-<div class="panel-tabset">
-<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Tab A</a></li><li><a href="#tabset-1-2">Tab B</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1">
-<p>content for ‘tab A’</p>
-</div>
-<div id="tabset-1-2">
-<p>content for ‘tab B’</p>
+<div>
+<figure>
+<p><img data-src="nyc_draft_feeling_files/figure-revealjs/cell-5-output-1.png" width="659" height="376"></p>
+</figure>
 </div>
 </div>
 </div>
 </section>
-<section class="slide level2">
-
-<div class="panel_sidebar">
-<h3 id="tab-a-1">Tab A</h3>
-<p>content for ‘tab A’</p>
-<h3 id="tab-b-1">Tab B</h3>
-<p>content for ‘tab B’</p>
-
+<section id="두-그래프-비교" class="slide level2">
+<h2>두 그래프 비교</h2>
+<div style="display: flex;">
+<div style="flex: 60%;">
+<div id="b5d48d7a" class="cell" data-execution_count="5">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="nyc_draft_feeling_files/figure-revealjs/cell-6-output-1.png" width="565" height="564"></p>
+</figure>
 </div>
+</div>
+</div>
+</div>
+<div style="flex: 50%; font-size: 45px;">
+<pre><code>풍속
+상관관계 미미
+
+
+습도
+여름,겨울 습도 높음
+→지연과 높은 상관
+
+
+온도
+지연이 많은 6, 7, 8, 12월
+온도 편차 증가→상관관계 있음</code></pre>
+</div>
+</div>
+
 </section></section>
-
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
-<p><img src="logo.png" class="slide-logo"></p>
+<p><img src="pa.jpg" class="slide-logo"></p>
 <div class="footer footer-default">
-<p>LS_뉴욕 비행</p>
+<p>LS 빅데이터 스쿨 3조 ( 김보경 / 박한슬 / 송설필 / 양현준 )</p>
 </div>
 </div></div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="20250318revealjs_files/libs/revealjs/dist/reveal.js"></script>
+  <script src="nyc_draft_feeling_files/libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="20250318revealjs_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="20250318revealjs_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="20250318revealjs_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="20250318revealjs_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="20250318revealjs_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="nyc_draft_feeling_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="nyc_draft_feeling_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="nyc_draft_feeling_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="nyc_draft_feeling_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="nyc_draft_feeling_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="20250318revealjs_files/libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="20250318revealjs_files/libs/revealjs/plugin/search/search.js"></script>
-  <script src="20250318revealjs_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="20250318revealjs_files/libs/revealjs/plugin/math/math.js"></script>
+  <script src="nyc_draft_feeling_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="nyc_draft_feeling_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="nyc_draft_feeling_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="nyc_draft_feeling_files/libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
